@@ -1,1 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support All - 경영관리 업무 대행 서비스</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Pretendard 폰트 -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+        }
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        /* 애니메이션 효과 수정 */
+        .scroll-animation {
+            opacity: 1; /* 기본적으로 보이게 설정 */
+            transform: translateY(0); /* 기본 위치 */
+        }
+        
+        /* 필요하다면 애니메이션 비활성화 */
+        .scroll-animation.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 네비게이션 바 -->
+    <nav class="bg-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-600">Support<span class="text-gray-800">All</span></a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#services" class="text-gray-700 hover:text-blue-600 transition">서비스</a>
+                <a href="#why-us" class="text-gray-700 hover:text-blue-600 transition">why Support All</a>
+                <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">문의하기</a>
+            </div>
+            <button class="md:hidden" id="mobile-menu-button">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- 모바일 메뉴 -->
+        <div class="md:hidden hidden bg-white w-full py-4 px-6" id="mobile-menu">
+            <a href="#services" class="block py-2 text-gray-700 hover:text-blue-600 transition">서비스</a>
+            <a href="#why-us" class="block py-2 text-gray-700 hover:text-blue-600 transition">why Support All</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600 transition">문의하기</a>
+        </div>
+    </nav>
 
+    <!-- 히어로 섹션 -->
+    <header class="hero-section h-screen flex items-center relative">
+        <div class="container mx-auto px-6 z-10">
+            <div class="max-w-3xl text-white">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">경영관리의 모든 것을<br>Support All과 함께</h1>
+                <p class="text-xl mb-8">비즈니스에 집중하세요. 나머지는 저희가 처리해드립니다.</p>
+                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 inline-block">상담 요청하기</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 서비스 소개 섹션 -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Support All 서비스</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">경영 관리를 위한 모든 업무를 전문가 손길로 처리해드립니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 서비스 1: 정산왕 -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg scroll-animation">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">정산왕</h3>
+                    <p class="text-gray-600">일일, 월별 정산 처리 및 관리, 정산 데이터 분석, 정산 보고서 작성 등 모든 정산 관련 업무를 처리해드립니다.</p>
+                </div>
+
+                <!-- 서비스 2: 자금왕 -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg scroll-animation" style="transition-delay: 0.2s;">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">자금왕</h3>
+                    <p class="text-gray-600">자금 조달 및 운용, 현금 흐름 관리, 예산 계획 및 집행, 투자 관리 등 기업 자금 관련 모든 업무를 지원합니다.</p>
+                </div>
+
+                <!-- 서비스 3: 급여왕 -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg scroll-animation" style="transition-delay: 0.4s;">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">급여왕</h3>
+                    <p class="text-gray-600">급여 계산 및 지급, 4대 보험 관리, 연말정산, 퇴직금 관리 등 임직원 급여와 관련된 모든 업무를 처리해드립니다.</p>
+                </div>
+
+                <!-- 서비스 4: 수금왕 -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg scroll-animation">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">수금왕</h3>
+                    <p class="text-gray-600">미수금 관리, 채권 추심, 거래처 신용 평가, 대금 회수 전략 수립 등 효율적인 수금 관리 서비스를 제공합니다.</p>
+                </div>
+
+                <!-- 서비스 5: 발행왕 -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg scroll-animation" style="transition-delay: 0.2s;">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">발행왕</h3>
+                    <p class="text-gray-600">세금계산서, 계산서, 영수증 등 각종 증빙 서류 발행 및 관리, 전자 세금계산서 시스템 운영 지원 서비스를 제공합니다.</p>
+                </div>
+
+                <!-- 서비스 6: 셋팅왕 -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg scroll-animation" style="transition-delay: 0.4s;">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">셋팅왕</h3>
+                    <p class="text-gray-600">회계 및 경영 관리 시스템 구축, 업무 프로세스 설계, 회사 규정 및 매뉴얼 수립 등 기업 운영 체계 구축을 지원합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 왜 서포트올을 선택해야 하는지 섹션 -->
+    <section id="why-us" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">왜 Support All인가요?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">수많은 서비스 중에서 Support All을 선택해야 하는 이유를 알려드립니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="mb-8 scroll-animation">
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 p-2 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">전문성</h3>
+                                <p class="text-gray-600">각 분야의 전문가들로 구성된 팀이 높은 수준의 서비스를 제공합니다. 최신 트렌드와 규제 변화를 반영한 솔루션을 제공합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8 scroll-animation" style="transition-delay: 0.2s;">
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 p-2 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">비용 효율성</h3>
+                                <p class="text-gray-600">정규직 직원을 고용하는 것보다 훨씬 저렴한 비용으로 전문적인 업무 처리가 가능합니다. 필요한 서비스만 선택적으로 이용할 수 있습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8 scroll-animation" style="transition-delay: 0.4s;">
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 p-2 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">시간 절약</h3>
+                                <p class="text-gray-600">경영 관리 업무를 전문가에게 맡김으로써 핵심 비즈니스에 더 집중할 수 있습니다. 불필요한 시행착오를 줄이고 효율적인 업무 처리가 가능합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="scroll-animation" style="transition-delay: 0.6s;">
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 p-2 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-gray-800">맞춤형 솔루션</h3>
+                                <p class="text-gray-600">고객의 요구사항에 맞춘 맞춤형 서비스를 제공합니다. 기업의 규모와 특성에 맞는 유연한 지원 체계를 구축합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-lg overflow-hidden shadow-xl scroll-animation">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="전문가 팀" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 문의하기 섹션 -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">문의하기</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">궁금한 점이 있으시거나 상담을 원하시면 아래 양식을 작성해 주세요. 빠른 시일 내에 답변 드리겠습니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="scroll-animation">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">이름</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="이름을 입력하세요" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">이메일</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="이메일을 입력하세요" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 mb-2">연락처</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="연락처를 입력하세요">
+                        </div>
+                        <div>
+                            <label for="service" class="block text-gray-700 mb-2">관심 서비스</label>
+                            <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                <option value="">서비스 선택</option>
+                                <option value="jeongsan">정산왕</option>
+                                <option value="jageum">자금왕</option>
+                                <option value="geupyeo">급여왕</option>
+                                <option value="sugeum">수금왕</option>
+                                <option value="balhaeng">발행왕</option>
+                                <option value="setting">셋팅왕</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">문의 내용</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600" placeholder="문의 내용을 입력하세요" required></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">문의하기</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="scroll-animation" style="transition-delay: 0.2s;">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg h-full">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-800">연락처 정보</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1 text-gray-800">전화번호</h4>
+                                    <p class="text-gray-600">010-2308-0564</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1 text-gray-800">이메일</h4>
+                                    <p class="text-gray-600">supporter1@supportall.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1 text-gray-800">주소</h4>
+                                    <p class="text-gray-600">대전광역시 유성구 테크노4로 29 201호</p>
+                                </div>
+                            </div>
+                            
+                           
+
+    <!-- 스크롤 애니메이션 및 모바일 메뉴 자바스크립트 -->
+    <script>
+        // 모바일 메뉴 토글
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 스크롤 애니메이션
+        const scrollAnimations = document.querySelectorAll('.scroll-animation');
+        
+        // 즉시 요소들을 표시하는 함수
+        function showAllElements() {
+            scrollAnimations.forEach(animation => {
+                animation.classList.add('active');
+            });
+        }
+        
+        function checkScroll() {
+            scrollAnimations.forEach(animation => {
+                const animationPosition = animation.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (animationPosition < screenPosition) {
+                    animation.classList.add('active');
+                }
+            });
+        }
+        
+        // 모든 요소 즉시 표시
+        showAllElements();
+        
+        // 초기 로드 시 체크
+        window.addEventListener('load', checkScroll);
+        // 스크롤 시 체크
+        window.addEventListener('scroll', checkScroll);
+    </script>
+</body>
+</html>
