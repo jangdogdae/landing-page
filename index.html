@@ -359,6 +359,68 @@
         window.addEventListener('load', checkScroll);
         // 스크롤 시 체크
         window.addEventListener('scroll', checkScroll);
+
+        // 문의하기 양식 제출 처리
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 폼 데이터 수집
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            
+            // 현재 시간 포맷팅 (한국 시간)
+            const now = new Date();
+            const koreanTime = new Date(now.getTime() + (9 * 60 * 60 * 1000)); // UTC+9 (한국 시간)
+            const submitTime = koreanTime.toISOString().replace('T', ' ').substring(0, 19);
+            
+            // 구글 시트에 데이터 전송
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwnTpW4ly_rXjB3xNfUq49MLXsnpw4bi1Gekc7AbdWUXYMo1_euM4uhxQ5BbLI2VmrYIA/exec'; // 구글 스크립트 URL로 변경 필요
+            
+            // 로딩 표시
+            const submitButton = document.querySelector('#contactForm button[type="submit"]');
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 전송 중...';
+            
+            // 데이터 전송
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    service: service,
+                    message: message,
+                    submitTime: submitTime
+                })
+            })
+            .then(response => {
+                // 성공 메시지 표시
+                alert('문의가 성공적으로 접수되었습니다. 빠른 시일 내에 답변 드리겠습니다.');
+                
+                // 폼 초기화
+                document.getElementById('contactForm').reset();
+                
+                // 버튼 상태 복원
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('문의 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+                
+                // 버튼 상태 복원
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            });
+        });
     </script>
 </body>
 </html>
