@@ -256,12 +256,12 @@
                             <label for="service" class="block text-gray-700 mb-2">관심 서비스</label>
                             <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
                                 <option value="">서비스 선택</option>
-                                <option value="jeongsan">정산왕</option>
-                                <option value="jageum">자금왕</option>
-                                <option value="geupyeo">급여왕</option>
-                                <option value="sugeum">수금왕</option>
-                                <option value="balhaeng">발행왕</option>
-                                <option value="setting">셋팅왕</option>
+                                <option value="정산왕">정산왕</option>
+                                <option value="자금왕">자금왕</option>
+                                <option value="급여왕">급여왕</option>
+                                <option value="수금왕">수금왕</option>
+                                <option value="발행왕">발행왕</option>
+                                <option value="셋팅왕">셋팅왕</option>
                             </select>
                         </div>
                         <div>
@@ -382,7 +382,16 @@
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
-            const service = document.getElementById('service').value;
+            
+            // 서비스 선택 요소
+            const serviceElement = document.getElementById('service');
+            // 선택된 옵션의 인덱스를 가져옴
+            const selectedIndex = serviceElement.selectedIndex;
+            // 영어 value 값
+            const serviceValue = serviceElement.value;
+            // 한글 텍스트 (표시되는 텍스트)
+            const serviceText = selectedIndex > 0 ? serviceElement.options[selectedIndex].text : "";
+            
             const message = document.getElementById('message').value;
             
             // 현재 시간 포맷팅 (한국 시간)
@@ -391,10 +400,9 @@
             const submitTime = koreanTime.toISOString().replace('T', ' ').substring(0, 19);
             
             // 구글 시트에 데이터 전송
-            // 새로 생성한 웹 앱 URL로 교체하세요
             const scriptURL = 'https://script.google.com/macros/s/AKfycbxKmDBeuPf7EJ0-kAMVlgMSYBskpBwO3z0_JS2ABbbKYh7f-3RJ4UrBvmHzVkEA0z6svA/exec'; 
             
-            console.log('데이터 전송 준비', {name, email, phone, service, message, submitTime}); // 디버깅용
+            console.log('데이터 전송 준비', {name, email, phone, serviceText, message, submitTime}); // 디버깅용
             
             // 로딩 표시
             const submitButton = document.querySelector('#contactForm button[type="submit"]');
@@ -408,7 +416,7 @@
             formData.append('name', name);
             formData.append('email', email);
             formData.append('phone', phone);
-            formData.append('service', service);
+            formData.append('service', serviceText); // serviceValue 대신 serviceText 사용
             formData.append('message', message);
             
             fetch(scriptURL, {
