@@ -387,10 +387,10 @@
             const serviceElement = document.getElementById('service');
             // 선택된 옵션의 인덱스를 가져옴
             const selectedIndex = serviceElement.selectedIndex;
-            // 영어 value 값
-            const serviceValue = serviceElement.value;
-            // 한글 텍스트 (표시되는 텍스트)
+            // 서비스 값을 가져오는 부분 수정 - 직접 옵션 텍스트 사용
             const serviceText = selectedIndex > 0 ? serviceElement.options[selectedIndex].text : "";
+            
+            console.log('선택된 서비스:', serviceText); // 디버깅용 - 실제로 어떤 값이 선택되었는지 확인
             
             const message = document.getElementById('message').value;
             
@@ -400,9 +400,9 @@
             const submitTime = koreanTime.toISOString().replace('T', ' ').substring(0, 19);
             
             // 구글 시트에 데이터 전송
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbxKmDBeuPf7EJ0-kAMVlgMSYBskpBwO3z0_JS2ABbbKYh7f-3RJ4UrBvmHzVkEA0z6svA/exec'; 
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwTJyWq5LXYsS7n_icS5SaIxg3uo_-0xtXb74KPr6VVJi4o8o1ZmAPk9ZI_Is20Vh3Sww/exec'; 
             
-            console.log('데이터 전송 준비', {name, email, phone, serviceText, message, submitTime}); // 디버깅용
+            console.log('데이터 전송 준비', {name, email, phone, service: serviceText, message, submitTime}); // 디버깅용
             
             // 로딩 표시
             const submitButton = document.querySelector('#contactForm button[type="submit"]');
@@ -410,14 +410,19 @@
             submitButton.disabled = true;
             submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 전송 중...';
             
-            // FormData 방식으로 변경 (대안적 방법)
+            // FormData 방식으로 변경
             const formData = new FormData();
             formData.append('submitTime', submitTime);
             formData.append('name', name);
             formData.append('email', email);
             formData.append('phone', phone);
-            formData.append('service', serviceText); // serviceValue 대신 serviceText 사용
+            formData.append('service', serviceText); // 여기서 serviceText 변수를 사용
             formData.append('message', message);
+            
+            // 디버깅을 위해 FormData 내용 확인
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
             
             fetch(scriptURL, {
                 method: 'POST',
