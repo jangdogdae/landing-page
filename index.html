@@ -319,7 +319,20 @@
                             <div class="flex items-start">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <svg class="w-6 h
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1 text-gray-800">운영시간</h4>
+                                    <p class="text-gray-600">월-금: 9:00 - 18:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- 스크롤 애니메이션 및 모바일 메뉴 자바스크립트 -->
     <script>
@@ -363,6 +376,7 @@
         // 문의하기 양식 제출 처리
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            console.log('폼 제출 시작'); // 디버깅용
             
             // 폼 데이터 수집
             const name = document.getElementById('name').value;
@@ -377,7 +391,10 @@
             const submitTime = koreanTime.toISOString().replace('T', ' ').substring(0, 19);
             
             // 구글 시트에 데이터 전송
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwnTpW4ly_rXjB3xNfUq49MLXsnpw4bi1Gekc7AbdWUXYMo1_euM4uhxQ5BbLI2VmrYIA/exec'; // 구글 스크립트 URL로 변경 필요
+            // 새로 생성한 웹 앱 URL로 교체하세요
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxKmDBeuPf7EJ0-kAMVlgMSYBskpBwO3z0_JS2ABbbKYh7f-3RJ4UrBvmHzVkEA0z6svA/exec'; 
+            
+            console.log('데이터 전송 준비', {name, email, phone, service, message, submitTime}); // 디버깅용
             
             // 로딩 표시
             const submitButton = document.querySelector('#contactForm button[type="submit"]');
@@ -385,23 +402,22 @@
             submitButton.disabled = true;
             submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 전송 중...';
             
-            // 데이터 전송
+            // FormData 방식으로 변경 (대안적 방법)
+            const formData = new FormData();
+            formData.append('submitTime', submitTime);
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('service', service);
+            formData.append('message', message);
+            
             fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    service: service,
-                    message: message,
-                    submitTime: submitTime
-                })
+                body: formData
             })
             .then(response => {
+                console.log('성공:', response); // 디버깅용
                 // 성공 메시지 표시
                 alert('문의가 성공적으로 접수되었습니다. 빠른 시일 내에 답변 드리겠습니다.');
                 
@@ -413,7 +429,7 @@
                 submitButton.innerHTML = originalButtonText;
             })
             .catch(error => {
-                console.error('Error!', error.message);
+                console.error('Error!', error); // 디버깅용
                 alert('문의 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
                 
                 // 버튼 상태 복원
