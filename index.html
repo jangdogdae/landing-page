@@ -27,7 +27,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.6);
         }
-        
+
         /* 스크롤 유도 애니메이션 추가 */
         @keyframes pulse-shadow {
             0% {
@@ -40,30 +40,31 @@
                 box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
             }
         }
-        
+
         .scroll-indicator {
             animation: pulse-shadow 2s infinite;
             border-radius: 50%;
             padding: 10px;
         }
-        
+
         .scroll-animation {
+            opacity: 1; /* Start visible */
+            transform: translateY(0);
+            /* Removed transition for instant visibility */
+        }
+
+        .scroll-animation.active { /* Keep this for potential future use, but not strictly needed now */
             opacity: 1;
             transform: translateY(0);
         }
-        
-        .scroll-animation.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
+
         /* 경험 섹션 스타일 */
         .experience-item {
             border-left: 3px solid #2563EB;
             padding-left: 1.5rem;
             position: relative;
         }
-        
+
         .experience-item::before {
             content: '';
             position: absolute;
@@ -78,16 +79,16 @@
         .service-card {
             transition: all 0.3s ease;
         }
-        
+
         .service-card:hover {
             transform: translateY(-5px);
         }
-        
-        /* 테스티모니얼 섹션 */
+
+        /* 테스티모니얼 섹션 (현재는 실적 섹션에 적용됨) */
         .testimonial-card {
             position: relative;
         }
-        
+
         .testimonial-card::before {
             content: '"';
             position: absolute;
@@ -106,9 +107,10 @@
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-blue-600">Support<span class="text-gray-800">All</span></a>
             <div class="hidden md:flex space-x-8">
-                <a href="#expertise" class="text-gray-700 hover:text-blue-600 transition">전문성</a>
+                <!-- Nav links order remains visually consistent, but they point to sections in the new order -->
                 <a href="#services" class="text-gray-700 hover:text-blue-600 transition">서비스</a>
                 <a href="#why-us" class="text-gray-700 hover:text-blue-600 transition">왜 Support All인가</a>
+                <a href="#expertise" class="text-gray-700 hover:text-blue-600 transition">전문성</a>
                 <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">문의하기</a>
             </div>
             <button class="md:hidden" id="mobile-menu-button">
@@ -119,9 +121,9 @@
         </div>
         <!-- 모바일 메뉴 -->
         <div class="md:hidden hidden bg-white w-full py-4 px-6" id="mobile-menu">
-            <a href="#expertise" class="block py-2 text-gray-700 hover:text-blue-600 transition">전문성</a>
             <a href="#services" class="block py-2 text-gray-700 hover:text-blue-600 transition">서비스</a>
             <a href="#why-us" class="block py-2 text-gray-700 hover:text-blue-600 transition">왜 Support All인가</a>
+            <a href="#expertise" class="block py-2 text-gray-700 hover:text-blue-600 transition">전문성</a>
             <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-600 transition">문의하기</a>
         </div>
     </nav>
@@ -139,10 +141,10 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- 스크롤 다운 표시기 추가 -->
         <div class="absolute bottom-10 left-0 right-0 flex justify-center z-10">
-            <a href="#expertise" class="animate-bounce text-white flex flex-col items-center">
+            <a href="#services" class="animate-bounce text-white flex flex-col items-center"> <!-- Points to the new first section -->
                 <span class="text-sm mb-2">스크롤하여 더 알아보기</span>
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
@@ -151,86 +153,7 @@
         </div>
     </header>
 
-    <!-- 전문성 섹션 -->
-    <section id="expertise" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-blue-600 font-semibold">EXPERTISE</span>
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">25년 실무 경험의 경영관리 전문가</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">다양한 업종에서의 풍부한 경험을 바탕으로 중소 기업에게 필요한 모든 경영관리 서비스를 제공합니다.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="scroll-animation">
-                    <div class="experience-item mb-8 pl-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">대기업 계열사 법인회계 전문성</h3>
-                        <p class="text-gray-600">회계감사, 월결산 경영보고서, 제품원가계산, 예산수립 등의 업무를 수행했습니다. 회계프로그램을 활용해 재무회계 및 제품별 원가회계를 담당했습니다.</p>
-                    </div>
-                    <div class="experience-item mb-8 pl-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">시스템 구축 및 ERP 운영 전문성</h3>
-                        <p class="text-gray-600">영업/재고 ERP 프로그램 구축, 거래처 채권관리 시스템 구축, 경영보고 시스템을 구축한 경험이 있습니다. 중소 기업에 최적화된 시스템 설계가 가능합니다.</p>
-                    </div>
-                    <div class="experience-item mb-8 pl-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">다양한 업종에서의 풍부한 경험</h3>
-                        <p class="text-gray-600">세무사무실부터 벤처기업, 제조업, 유통업, 요식업, 교육업, 금융업, 서비스업 등 다양한 업종에서의 경영관리 경험을 보유하고 있습니다.</p>
-                    </div>
-                    <div class="experience-item pl-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">자금 및 급여관리 전문성</h3>
-                        <p class="text-gray-600">자금일보, 자금계획, 자금조달 및 유지업무 등의 자금관리와 다중 지점의 직원관리 및 급여계산 시스템 운영 경험을 갖추고 있습니다.</p>
-                    </div>
-                </div>
-                
-                <div class="scroll-animation" style="transition-delay: 0.3s;">
-                    <div class="bg-blue-50 p-8 rounded-xl shadow-lg relative overflow-hidden">
-                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-100 rounded-full opacity-50"></div>
-                        <div class="relative z-10">
-                            <h3 class="text-2xl font-bold mb-6 text-gray-800">핵심 역량</h3>
-                            <ul class="space-y-4">
-                                <li class="flex items-start">
-                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-gray-700">회계학 전공자로서의 체계적인 이론 기반</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-gray-700">다양한 업종에서의 25년 현장 경험</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-gray-700">더존, 이카운트 등 회계 프로그램 능숙한 활용</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-gray-700">ERP 도입 및 운영 시스템 구축 경험</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-gray-700">엑셀 데이터 관리 및 분석 전문성</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span class="text-gray-700">세무 관리 및 신고 전문성</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 서비스 소개 섹션 -->
+    <!-- === NEW ORDER: 서비스 소개 섹션 === -->
     <section id="services" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
@@ -310,93 +233,8 @@
         </div>
     </section>
 
-    <!-- 실적 및 경험 섹션 (추가) -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-blue-600 font-semibold">ACHIEVEMENTS</span>
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">주요 실적 및 경험</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">25년간 다양한 기업에서 인정받은 경영관리 전문가의 실적입니다.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card">
-                    <div class="relative z-10">
-                        <h3 class="text-lg font-bold text-gray-800 mb-2"> 요식업 프랜차이즈</h3>
-                        <p class="text-gray-600 mb-4">대학교 단체급식, 한식, 일식, 카페 등 20여개 지점 관리</p>
-                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>식자재 물류관리 프로그램 운영 및 관리</li>
-                            <li>지점별 직원관리 및 급여계산</li>
-                            <li>본점 및 지점 자금관리</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card">
-                    <div class="relative z-10">
-                        <h3 class="text-lg font-bold text-gray-800 mb-2"> 교육 서비스업</h3>
-                        <p class="text-gray-600 mb-4">수학교육, 연산앱 운영 · 사업부장</p>
-                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>***연산(앱) 유료회원 10배 성장에 기여</li>
-                            <li>회원관리, 교사관리, 홍보관리 시스템 제작</li>
-                            <li>앱/관리프로그램 전면 재개발 프로젝트 진행</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card">
-                    <div class="relative z-10">
-                                            <h3 class="text-lg font-bold text-gray-800 mb-2"> 유통업</h3>
-                        <p class="text-gray-600 mb-4">전국 1000여개 커피숍 초콜릿 유통</p>
-                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>영업 및 재고 ERP 프로그램 구축</li>
-                            <li>거래처 채권관리 시스템 구축</li>
-                            <li>경영보고 시스템 구축</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card">
-                    <div class="relative z-10">
-                        <h3 class="text-lg font-bold text-gray-800 mb-2"> 원료의약품제조</h3>
-                        <p class="text-gray-600 mb-4">원료의약품 생산 및 판매, 연구개발</p>
-                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>더존프로그램 사용 재무회계 및 원가회계 수행</li>
-                            <li>당월손익계산 및 예산차이 분석, 경영보고서 작성</li>
-                            <li>자금일보, 자금계획, 자금조달 및 유지업무</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card">
-                    <div class="relative z-10">
-                        <h3 class="text-lg font-bold text-gray-800 mb-2"> 연구개발 벤처기업</h3>
-                        <p class="text-gray-600 mb-4">경영관리 팀장</p>
-                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>더존프로그램 사용 재무회계 및 원가회계 수행</li>
-                            <li>월별, 분기별 실적집계 및 보고</li>
-                            <li>과제 예산작성 및 집행, 정산보고 업무</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card">
-                    <div class="relative z-10">
-                        <h3 class="text-lg font-bold text-gray-800 mb-2">세무회계사무소</h3>
-                        <p class="text-gray-600 mb-4">세무회계 및 세무신고 전문</p>
-                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
-                            <li>부가세, 법인세, 원천세 등 신고업무 및 조정업무</li>
-                            <li>기장 및 결산업무, 제조업체 원가회계</li>
-                            <li>4대보험 관리업무 - 가입, 탈퇴, 보수총액신고 등</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 왜 서포트올을 선택해야 하는지 섹션 -->
-    <section id="why-us" class="py-20 bg-gray-50">
+    <!-- === NEW ORDER: 왜 서포트올을 선택해야 하는지 섹션 === -->
+    <section id="why-us" class="py-20 bg-white"> <!-- Changed background to white for better alternation -->
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <span class="text-blue-600 font-semibold">WHY CHOOSE US</span>
@@ -470,8 +308,172 @@
         </div>
     </section>
 
+    <!-- === NEW ORDER: 전문성 섹션 === -->
+    <section id="expertise" class="py-20 bg-gray-50"> <!-- Changed background back to gray-50 -->
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-semibold">EXPERTISE</span>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">25년 실무 경험의 경영관리 전문가</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">다양한 업종에서의 풍부한 경험을 바탕으로 중소 기업에게 필요한 모든 경영관리 서비스를 제공합니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-animation">
+                    <div class="experience-item mb-8 pl-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">대기업 계열사 법인회계 전문성</h3>
+                        <p class="text-gray-600">회계감사, 월결산 경영보고서, 제품원가계산, 예산수립 등의 업무를 수행했습니다. 회계프로그램을 활용해 재무회계 및 제품별 원가회계를 담당했습니다.</p>
+                    </div>
+                    <div class="experience-item mb-8 pl-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">시스템 구축 및 ERP 운영 전문성</h3>
+                        <p class="text-gray-600">영업/재고 ERP 프로그램 구축, 거래처 채권관리 시스템 구축, 경영보고 시스템을 구축한 경험이 있습니다. 중소 기업에 최적화된 시스템 설계가 가능합니다.</p>
+                    </div>
+                    <div class="experience-item mb-8 pl-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">다양한 업종에서의 풍부한 경험</h3>
+                        <p class="text-gray-600">세무사무실부터 벤처기업, 제조업, 유통업, 요식업, 교육업, 금융업, 서비스업 등 다양한 업종에서의 경영관리 경험을 보유하고 있습니다.</p>
+                    </div>
+                    <div class="experience-item pl-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">자금 및 급여관리 전문성</h3>
+                        <p class="text-gray-600">자금일보, 자금계획, 자금조달 및 유지업무 등의 자금관리와 다중 지점의 직원관리 및 급여계산 시스템 운영 경험을 갖추고 있습니다.</p>
+                    </div>
+                </div>
+
+                <div class="scroll-animation" style="transition-delay: 0.3s;">
+                    <div class="bg-blue-50 p-8 rounded-xl shadow-lg relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-100 rounded-full opacity-50"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold mb-6 text-gray-800">핵심 역량</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">회계학 전공자로서의 체계적인 이론 기반</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">다양한 업종에서의 25년 현장 경험</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">더존, 이카운트 등 회계 프로그램 능숙한 활용</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">ERP 도입 및 운영 시스템 구축 경험</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">엑셀 데이터 관리 및 분석 전문성</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700">세무 관리 및 신고 전문성</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === NEW ORDER: 실적 및 경험 섹션 (Logically follows Expertise) === -->
+    <section class="py-20 bg-white"> <!-- Changed background to white -->
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-semibold">ACHIEVEMENTS</span>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">주요 실적 및 경험</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">25년간 다양한 기업에서 인정받은 경영관리 전문가의 실적입니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card scroll-animation">
+                    <div class="relative z-10">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2"> 요식업 프랜차이즈</h3>
+                        <p class="text-gray-600 mb-4">대학교 단체급식, 한식, 일식, 카페 등 20여개 지점 관리</p>
+                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
+                            <li>식자재 물류관리 프로그램 운영 및 관리</li>
+                            <li>지점별 직원관리 및 급여계산</li>
+                            <li>본점 및 지점 자금관리</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card scroll-animation" style="transition-delay: 0.2s;">
+                    <div class="relative z-10">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2"> 교육 서비스업</h3>
+                        <p class="text-gray-600 mb-4">수학교육, 연산앱 운영 · 사업부장</p>
+                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
+                            <li>***연산(앱) 유료회원 10배 성장에 기여</li>
+                            <li>회원관리, 교사관리, 홍보관리 시스템 제작</li>
+                            <li>앱/관리프로그램 전면 재개발 프로젝트 진행</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card scroll-animation" style="transition-delay: 0.4s;">
+                    <div class="relative z-10">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2"> 유통업</h3>
+                        <p class="text-gray-600 mb-4">전국 1000여개 커피숍 초콜릿 유통</p>
+                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
+                            <li>영업 및 재고 ERP 프로그램 구축</li>
+                            <li>거래처 채권관리 시스템 구축</li>
+                            <li>경영보고 시스템 구축</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card scroll-animation">
+                    <div class="relative z-10">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2"> 원료의약품제조</h3>
+                        <p class="text-gray-600 mb-4">원료의약품 생산 및 판매, 연구개발</p>
+                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
+                            <li>더존프로그램 사용 재무회계 및 원가회계 수행</li>
+                            <li>당월손익계산 및 예산차이 분석, 경영보고서 작성</li>
+                            <li>자금일보, 자금계획, 자금조달 및 유지업무</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card scroll-animation" style="transition-delay: 0.2s;">
+                    <div class="relative z-10">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2"> 연구개발 벤처기업</h3>
+                        <p class="text-gray-600 mb-4">경영관리 팀장</p>
+                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
+                            <li>더존프로그램 사용 재무회계 및 원가회계 수행</li>
+                            <li>월별, 분기별 실적집계 및 보고</li>
+                            <li>과제 예산작성 및 집행, 정산보고 업무</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 rounded-xl p-6 shadow-md testimonial-card scroll-animation" style="transition-delay: 0.4s;">
+                    <div class="relative z-10">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">세무회계사무소</h3>
+                        <p class="text-gray-600 mb-4">세무회계 및 세무신고 전문</p>
+                        <ul class="text-gray-600 space-y-1 ml-5 list-disc">
+                            <li>부가세, 법인세, 원천세 등 신고업무 및 조정업무</li>
+                            <li>기장 및 결산업무, 제조업체 원가회계</li>
+                            <li>4대보험 관리업무 - 가입, 탈퇴, 보수총액신고 등</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 문의하기 섹션 -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20 bg-gray-50"> <!-- Changed background back to gray-50 -->
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <span class="text-blue-600 font-semibold">CONTACT US</span>
@@ -519,7 +521,7 @@
                 <div class="scroll-animation" style="transition-delay: 0.2s;">
                     <div class="bg-blue-50 p-8 rounded-lg shadow-lg h-full">
                         <h3 class="text-2xl font-bold mb-6 text-gray-800">연락처 정보</h3>
-                        
+
                         <div class="space-y-6">
                             <div class="flex items-start">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
@@ -532,7 +534,7 @@
                                     <p class="text-gray-600">010-2308-0564</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -544,7 +546,7 @@
                                     <p class="text-gray-600">supporter1@supportall.com</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -557,7 +559,7 @@
                                     <p class="text-gray-600">대전광역시 유성구 테크노4로 29, 201호</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
                                 <div class="bg-blue-100 p-3 rounded-full mr-4">
                                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -584,7 +586,7 @@
                     <h3 class="text-2xl font-bold mb-4">Support<span class="text-blue-400">All </span> </h3>
                     <p class="text-gray-400 mb-4">소규모 기업을 위한 고급 경영관리 서비스를 제공합니다. 25년 경험을 바탕으로 귀사의 든든한 파트너가 되어드립니다.</p>
                     <div class="flex space-x-4">
-                        
+
                     </div>
                 </div>
                 <div>
@@ -601,15 +603,16 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">빠른 링크</h4>
                     <ul class="space-y-2">
-                        <li><a href="#expertise" class="text-gray-400 hover:text-white transition">전문성</a></li>
+                        <!-- Footer links updated to reflect visual nav order -->
                         <li><a href="#services" class="text-gray-400 hover:text-white transition">서비스</a></li>
                         <li><a href="#why-us" class="text-gray-400 hover:text-white transition">왜 Support All인가</a></li>
+                        <li><a href="#expertise" class="text-gray-400 hover:text-white transition">전문성</a></li>
                         <li><a href="#contact" class="text-gray-400 hover:text-white transition">문의하기</a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 SupportAll. All rights reserved.</p>
+                <p>© 2025 SupportAll. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -642,77 +645,87 @@
 
         // 페이지 내 클릭 시 메뉴 닫기 (메뉴 영역과 버튼 영역 외의 클릭)
         document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && e.target !== mobileMenuButton && !mobileMenuButton.contains(e.target)) {
+            const isClickInsideMenu = mobileMenu.contains(e.target);
+            const isClickOnButton = mobileMenuButton === e.target || mobileMenuButton.contains(e.target);
+
+            if (!isClickInsideMenu && !isClickOnButton && !mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
             }
         });
 
-        // 스크롤 애니메이션
+
+        // 스크롤 애니메이션 (즉시 표시되도록 변경)
         const scrollAnimations = document.querySelectorAll('.scroll-animation');
-        
-        // 즉시 요소들을 표시하는 함수
+
+        // 페이지 로드 시 모든 요소 즉시 표시
         function showAllElements() {
             scrollAnimations.forEach(animation => {
-                animation.classList.add('active');
+                animation.classList.add('active'); // 'active' 클래스를 추가하여 즉시 스타일 적용
             });
         }
-        
+
+        // 페이지 로드 완료 시 함수 실행
+        window.addEventListener('load', showAllElements);
+
+        // (선택사항) 스크롤 시에도 active 클래스를 유지하거나 추가하는 로직 (현재는 로드 시 다 보이게 처리)
+        /*
         function checkScroll() {
             scrollAnimations.forEach(animation => {
+                // Optionally re-add logic here if needed, but current setup makes them visible from start.
                 const animationPosition = animation.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
-                
+                const screenPosition = window.innerHeight / 1.2; // Adjust trigger point if needed
+
                 if (animationPosition < screenPosition) {
-                    animation.classList.add('active');
+                    if (!animation.classList.contains('active')) {
+                         animation.classList.add('active');
+                    }
                 }
+                // Optional: Remove class if it scrolls out of view upwards
+                // else if (animationPosition > window.innerHeight) {
+                //     animation.classList.remove('active');
+                // }
             });
         }
-        
-        // 모든 요소 즉시 표시
-        showAllElements();
-        
-        // 초기 로드 시 체크
-        window.addEventListener('load', checkScroll);
-        // 스크롤 시 체크
         window.addEventListener('scroll', checkScroll);
+        */
 
         // 문의하기 양식 제출 처리
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             console.log('폼 제출 시작'); // 디버깅용
-            
+
             // 폼 데이터 수집
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-                        const phone = document.getElementById('phone').value;
-            
+            const phone = document.getElementById('phone').value;
+
             // 서비스 선택 요소
             const serviceElement = document.getElementById('service');
             // 선택된 옵션의 인덱스를 가져옴
             const selectedIndex = serviceElement.selectedIndex;
             // 서비스 값을 가져오는 부분 - 직접 옵션 텍스트 사용
             const serviceText = selectedIndex > 0 ? serviceElement.options[selectedIndex].text : "";
-            
+
             console.log('선택된 서비스:', serviceText); // 디버깅용
-            
+
             const message = document.getElementById('message').value;
-            
+
             // 현재 시간 포맷팅 (한국 시간)
             const now = new Date();
             const koreanTime = new Date(now.getTime() + (9 * 60 * 60 * 1000)); // UTC+9 (한국 시간)
             const submitTime = koreanTime.toISOString().replace('T', ' ').substring(0, 19);
-            
+
             // 구글 시트에 데이터 전송
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbzVZqwsxtBt5rx17k_K4xYH16UW0aJkNNT93lAYQ40p8n0ookB92rCfBOi0lbrModvhCQ/exec'; 
-            
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzVZqwsxtBt5rx17k_K4xYH16UW0aJkNNT93lAYQ40p8n0ookB92rCfBOi0lbrModvhCQ/exec';
+
             console.log('데이터 전송 준비', {name, email, phone, service: serviceText, message, submitTime}); // 디버깅용
-            
+
             // 로딩 표시
             const submitButton = document.querySelector('#contactForm button[type="submit"]');
             const originalButtonText = submitButton.innerHTML;
             submitButton.disabled = true;
             submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 전송 중...';
-            
+
             // FormData 방식으로 변경
             const formData = new FormData();
             formData.append('submitTime', submitTime);
@@ -721,39 +734,41 @@
             formData.append('phone', phone);
             formData.append('service', serviceText); // 여기서 serviceText 변수를 사용
             formData.append('message', message);
-            
+
             // 디버깅을 위해 FormData 내용 확인
             for (let pair of formData.entries()) {
                 console.log(pair[0] + ': ' + pair[1]);
             }
-            
+
             fetch(scriptURL, {
                 method: 'POST',
-                mode: 'no-cors',
+                // Remove 'no-cors' temporarily for debugging if needed, but it's often required for cross-origin Google Apps Script POSTs from client-side JS
+                // mode: 'no-cors', // Keep no-cors for typical Google Apps Script web app deployment
                 body: formData
             })
             .then(response => {
-                console.log('성공:', response); // 디버깅용
-                // 성공 메시지 표시
+                 // Note: 'no-cors' mode means the response body will be opaque and you can't directly check success from it.
+                 // We assume success if the fetch doesn't throw an error.
+                console.log('Success (assumed due to no-cors):', response); // 디버깅용
                 alert('문의가 성공적으로 접수되었습니다. 빠른 시일 내에 답변 드리겠습니다.');
-                
-                // 폼 초기화
-                document.getElementById('contactForm').reset();
-                
+
+                document.getElementById('contactForm').reset(); // 폼 초기화
+
                 // 버튼 상태 복원
                 submitButton.disabled = false;
                 submitButton.innerHTML = originalButtonText;
             })
             .catch(error => {
                 console.error('Error!', error); // 디버깅용
-                alert('문의 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
-                
+                alert('문의 전송 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요. 오류: ' + error);
+
                 // 버튼 상태 복원
                 submitButton.disabled = false;
                 submitButton.innerHTML = originalButtonText;
             });
         });
-        
+
+
         // 스크롤 투 탑 버튼 기능
         const scrollToTopBtn = document.createElement('button');
         scrollToTopBtn.innerHTML = `
@@ -763,38 +778,54 @@
         `;
         scrollToTopBtn.className = 'fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-blue-700 focus:outline-none';
         scrollToTopBtn.style.zIndex = '100';
-        scrollToTopBtn.style.opacity = '0';
+        scrollToTopBtn.style.opacity = '0'; // Start hidden
         document.body.appendChild(scrollToTopBtn);
-        
+
         scrollToTopBtn.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
-        
+
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollToTopBtn.style.opacity = '1';
+            if (window.pageYOffset > 300) { // Show button after scrolling down 300px
+                 if(scrollToTopBtn.style.opacity !== '1') {
+                    scrollToTopBtn.style.opacity = '1';
+                 }
             } else {
-                scrollToTopBtn.style.opacity = '0';
+                 if(scrollToTopBtn.style.opacity !== '0') {
+                    scrollToTopBtn.style.opacity = '0';
+                 }
             }
         });
 
-        // 스크롤 표시기 스무스 스크롤 처리
+
+        // 스크롤 표시기 및 네비게이션 스무스 스크롤 처리
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
+                // Handle case where href="#" is just for the top link
+                if (targetId === '#') {
+                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                     return;
+                }
+
                 const targetElement = document.querySelector(targetId);
-                
+
                 if (targetElement) {
+                    // Calculate offset considering the fixed navigation bar height (approx 68px based on py-3)
+                    const navBarHeight = document.querySelector('nav')?.offsetHeight || 70; // Adjust if nav height changes
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - navBarHeight - 20; // Add extra space
+
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80, // 네비게이션 바 높이 감안
+                        top: offsetPosition,
                         behavior: 'smooth'
                     });
-                    
+
                     // 모바일 메뉴가 열려있다면 닫기
                     if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
                         mobileMenu.classList.add('hidden');
